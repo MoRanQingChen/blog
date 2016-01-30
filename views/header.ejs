@@ -1,0 +1,57 @@
+<%-include background.ejs%>
+
+<div style="width: 100%;overflow: hidden">
+<div>
+    <div style="background-color: rgba(197, 205, 181, 0.3);height: 35px;width: 100%;border-bottom:1px solid #6d938b;position: absolute;z-index: -1"></div>
+    <span style="line-height: 35px;margin-left: 20px">墨染轻尘</span>
+    <span style="float: right;margin-right: 20px;line-height: 35px">
+        <% if (user) { %>
+            <%if(user.name=='墨染'){%>
+                <span class="dan">欢迎博主<%-user.name%>回来</span>
+                <span><a href="/upload">上传</a></span>
+                <span><a href="/post">发表</a></span>
+                <span><a href="/logout">登出</a></span>
+            <%}else{%>
+                <span class="dan">欢迎您，尊敬的访客<%-user.name%></span>
+                <span><a href="/logout">登出</a></span>
+            <%}%>
+        <% } else { %>
+        <span class="dan">登录后才可留言和评论文章哦</span>
+        <span><a href="/login">登录</a></span>
+<span><a href="/reg">注册</a></span>
+        <% } %>
+    </span>
+</div>
+<div style="font-size:1.1em;margin-left: 12em;width: 70%;background-color: rgba(205, 217, 169, 0.3);border-radius: 0 0 20px 20px;box-shadow: 5px 3px 5px rgba(31, 63, 0, 0.2)">
+    <div style="height: 1px;width: 1px"></div>
+    <header>
+        <h1>&nbsp;</h1>
+    </header>
+</div>
+<!--<div style="position:fixed;left: 0;bottom: 0;opacity: .2">-->
+    <!--<audio preload="auto" controls autoplay loop src="/images/haohaizi.mp3">-->
+        <!--<p>Your browser does not support the <code>audio</code> element.</p>-->
+    <!--</audio>-->
+<!--</div>-->
+
+    <% if (success) { %>
+    <div class=" waringBox appear">
+        <h2 class="tada"><%= success %></h2>
+    </div>
+    <% } %>
+    <% if (error) { %>
+    <div class=" waringBox appear">
+        <h2 class="tada"><%= error %></h2>
+    </div>
+    <% } %>
+
+<div id="content">
+    <h1 id="mainHead"><%= title %></h1>
+
+
+    <nav>
+        <span class="swing"><a href="/">主    页</a></span>
+        <span class="swing"><a href="/bowen">博    文</a></span>
+        <span class="swing"><a href="/liuyan">留    言</a></span>
+    </nav>
+    <article>

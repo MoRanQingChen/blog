@@ -1,0 +1,17 @@
+<%- include header %>
+
+    <% posts.forEach(function (post, index) { %>
+    <div class="bowen artical fadeInDown" style="margin-bottom: 20px">
+        <p><h2>
+            <a href="/u/<%= post.type %>/<%= post.time.day %>/<%= post.title%>">
+                <%= post.title %>>
+            </a>
+        </h2></p>
+        <p class="info">
+            类型：<a href="/u/<%= post.type %>"><%= post.type %></a> |
+            日期：<%= post.time.minute %>
+        </p>
+    </div>
+    <% }) %>
+
+<%- include footer %>

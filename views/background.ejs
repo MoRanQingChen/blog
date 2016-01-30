@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Blog</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+<div id="leftPic"></div>
+<div id="rightPic"></div>
+<div style="width: 100%;overflow: hidden">
+    <canvas id="canvas" style="position: fixed;z-index: -1;"></canvas>
+    <script>
+        window.onload=function(){
+            var can=document.getElementById("canvas");
+            var body=document.getElementsByTagName('body')[0];
+            can.width=body.offsetWidth;
+            can.height=body.offsetHeight;
+            var context=can.getContext("2d");
+            var balls=[];
+            setBall();
+
+            setInterval(function () {
+                changeBall();
+                context.clearRect(0,0,can.width,can.height);
+                drawBall();
+            },30)
+
+            function setBall(){
+                for(var i=0;i<40;i++){
+                    balls[i]={
+                        x:(Math.random()+i-0.5)*can.width/40,
+                        y:Math.random()*can.height,
+                        big:12*Math.random()+1
+                    }
+                }
+            }
+            function resetBall(ball,i){
+                ball.x=(Math.random()+i-0.5)*can.width/40;
+                ball.y=0;
+                ball.big=12*Math.random()+1;
+            }
+            function changeBall(){
+                for(var i=0;i<balls.length;i++){
+                    if(balls[i].y>can.height){
+                        resetBall(balls[i],i);
+                    }else{
+                        balls[i].y+=balls[i].big*0.3;
+                        balls[i].x+=Math.sin(balls[i].y/balls[i].big*0.2)*balls[i].big*.2;
+                    }
+                }
+            }
+            function drawBall(){
+                context.shadowBlur = 10; // 模糊尺寸
+                context.shadowColor = 'rgba(225,225,225,1)'; // 颜色
+                for(var i= 0;i<balls.length;i++){
+                    context.beginPath();
+                    context.fillStyle='rgba(225,225,225,'+1/balls[i].big*2+')'
+                    context.arc(balls[i].x,balls[i].y,balls[i].big,0,Math.PI*2);
+                    context.fill();
+                }
+            }
+
+
+                var nav=document.getElementsByTagName('nav')[0].getElementsByTagName('a');
+                for(var i=0;i<nav.length;i++){
+                    nav[i].index=i;
+                    nav[i].onmouseover=function(){
+                        var x=this.index;
+                        this.className='rubberBand';
+                        setTimeout(function(){
+                            console.log(x);
+                            nav[x].className='';
+                        },1000)
+                    }
+                    nav[i].onclick=function(){
+                        this.style.background="rgba(255,169,169,.7)"
+                    }
+                }
+            }
+
+
+
+    </script>

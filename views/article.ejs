@@ -1,0 +1,19 @@
+<%- include header %>
+<link rel="stylesheet" href="/stylesheets/article.css">
+<div class="artical rotateInDownLeft" style="margin-bottom: 20px">
+<h1><%-post.title%></h1>
+<%if(user&&(user.name=='墨染')){%>
+<p>
+    <span><a class="edit" href="/edit/<%=post.type%>/<%=post.time.day%>/<%=post.title%>">编辑</a></span>
+    <span><a class="edit" href="/delete/<%=post.type%>/<%=post.time.day%>/<%=post.title%>">删除</a></span>
+</p>
+<%}%>
+
+<p class="info">
+    类型：<a href="/u/<%= post.type %>"><%= post.type %></a> |
+    日期：<%= post.time.minute %>
+</p>
+<p><%- post.post %></p>
+</div>
+<%-include comment.ejs%>
+<%- include footer %>

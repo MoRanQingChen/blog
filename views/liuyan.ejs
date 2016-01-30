@@ -1,0 +1,22 @@
+<%- include header.ejs%>
+<% liuyan.forEach(function (liuyan, index) { %>
+<div class="ourComment lightSpeedIn" style="margin-bottom: 20px">
+    <p class="info">
+        用户: <span style="color: #886d91"><%= liuyan.name %></span>
+        日期：<%= liuyan.time.minute %>
+        <%- liuyan.post %>
+    </p>
+</div>
+
+<% }) %>
+<%if(user){%>
+<form method="post">
+    你想说：<br />
+    <textarea name="post" rows="10" cols="100"></textarea><br />
+    <input type="submit" class="submit right" value="留言" />
+</form>
+<%}else{%>
+<a href="/login">登陆</a>后才可留言哦,若没有账号可以先<a href="/reg">注册</a>
+<%}%>
+
+<%- include footer.ejs%>

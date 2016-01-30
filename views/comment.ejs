@@ -1,0 +1,35 @@
+<br>
+<div class="ourComment" style="margin-bottom: 20px">
+
+<%post.comments.forEach(function(comment,index){%>
+<p><a href="<%=comment.website%>">
+        <%= comment.name %>
+    </a>
+    <span class="info">回复于
+        <%-comment.time%>
+    </span>
+</p>
+<p>
+    <%-comment.content%>
+</p>
+<%})%>
+
+</div>
+<script>
+    console.log(document.getElementsByClassName('ourComment')[0].offsetHeight)
+    if(document.getElementsByClassName('ourComment')[0].offsetHeight<25)
+        document.getElementsByClassName('ourComment')[0].innerHTML='还没有人留言哦~  快来抢占沙发吧！'
+</script>
+
+
+<form method="post"  class="liuyan-form">
+    <%if(user){%>
+    <input type="text" name="email" value="<%=user.email%>"style="display:none"/><br/>
+    <input type="text" name="website" value="/u/<%=user.name%>"style="display:none"/><br/>
+    用户：<%-user.name%><input type="text" name="name" value="<%=user.name%>" style="display:none"/><br/>
+    <textarea name="content" rows="7" cols="100"></textarea><br/>
+    <input type="submit" class="submit right" value="评论">
+    <%}else{%>
+    <a href="/login">登陆</a>后才可留言哦,若没有账号可以先<a href="/reg">注册</a>
+    <%}%>
+</form>

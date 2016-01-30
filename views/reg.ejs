@@ -1,0 +1,18 @@
+<%- include background.ejs %>
+<link rel="stylesheet" href="/stylesheets/input.css">
+
+
+<div class=" waringBox appear">
+    <h2 class="tada"><%= waring %></h2>
+</div>
+<a href="/" class="BlueButton left" style="margin-left: 500px">返回首页</a>
+<form method="post">
+
+    <h1 id="loginHeader">欢迎加入墨染博客</h1>
+    <input type="text" name="name" placeholder="用户名"/><br />
+    <input type="password" name="password" placeholder="密码"/><br />
+    <input type="password" name="password-repeat" placeholder="确认密码"/><br />
+    <input type="email" name="email" placeholder="邮箱"/><br />
+    <input type="submit" value="注册" class="submit"/>
+</form>
+<%- include footer %>
